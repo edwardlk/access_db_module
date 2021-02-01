@@ -1816,6 +1816,7 @@ Function yesNoNoneQuestions(obj As Object)
     
  Call SetPropertyDAO(obj, "ValidationRule", dbText, "IN (0,1,99)")
  Call SetPropertyDAO(obj, "ValidationText", dbText, "Accepts 0(=no), 1(=yes), or 99(=N/A)")
+ Call SetPropertyDAO(obj, "DefaultValue", dbInteger, 0)
 
 End Function
 
