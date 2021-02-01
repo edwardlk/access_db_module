@@ -58,9 +58,10 @@ Public Sub daoCreateTables()
  Call setComboProperties(fldB07, "Excellent;Good;Moderate;Poor;Not at all")
 
  Dim fldB08 As DAO.Field
- Set fldB08 = tdf.CreateField("Interpreter_Needed", dbBoolean)
+ Set fldB08 = tdf.CreateField("Interpreter_Needed", dbInteger)
  tdf.Fields.Append fldB08
- Call SetPropertyDAO(fldB08, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldB08)
+ '  Call SetPropertyDAO(fldB08, "DisplayControl", dbInteger, CInt(acCheckBox))
 
  Dim fldB09 As DAO.Field
  Set fldB09 = tdf.CreateField("Language", dbText)
@@ -78,14 +79,16 @@ Public Sub daoCreateTables()
  Call setComboProperties(fldB11, "WWII Era;Korean Hostilities;Vietnam Era;Global War on Terror;Veteran-other dates;Veteran-dates undetermined;Not a veteran;Veteran status unknown")
 
  Dim fldB12 As DAO.Field
- Set fldB12 = tdf.CreateField("VA_connected", dbBoolean)
+ Set fldB12 = tdf.CreateField("VA_connected", dbInteger)
  tdf.Fields.Append fldB12
- Call SetPropertyDAO(fldB12, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldB12)
+ '  Call SetPropertyDAO(fldB12, "DisplayControl", dbInteger, CInt(acCheckBox))
 
  Dim fldB13 As DAO.Field
- Set fldB13 = tdf.CreateField("VA_referral", dbBoolean)
+ Set fldB13 = tdf.CreateField("VA_referral", dbInteger)
  tdf.Fields.Append fldB13
- Call SetPropertyDAO(fldB13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldB13)
+ '  Call SetPropertyDAO(fldB13, "DisplayControl", dbInteger, CInt(acCheckBox))
 
  Dim fldB14 As DAO.Field
  Set fldB14 = tdf.CreateField("referral", dbText)
@@ -105,7 +108,7 @@ Public Sub daoCreateTables()
  Dim fldB17 As DAO.Field
  Set fldB17 = tdf.CreateField("Employment", dbText)
  tdf.Fields.Append fldB17
- Call setComboProperties(fldB17, "Employed full-time;Employed part-time;Unemployed;Paid transitional;Paid, non-comp;Not in labor force: homemaker;Not in labor force: incarcerated;Not in labor force: retired;Not in labor force: SSI;Not in labor force: student;Not in labor force: other;Volunteer;Unknown")
+ Call setComboProperties(fldB17, "Employed full-time;Employed part-time;Unemployed;Paid transitional;Paid non-comp;Not in labor force homemaker;Not in labor force incarcerated;Not in labor force retired;Not in labor force SSI;Not in labor force student;Not in labor force other;Volunteer;Unknown")
 
  Dim fldB18 As DAO.Field
  Set fldB18 = tdf.CreateField("Income", dbText)
@@ -115,32 +118,32 @@ Public Sub daoCreateTables()
  Dim fldB19 As DAO.Field
  Set fldB19 = tdf.CreateField("Pregnant", dbText)
  tdf.Fields.Append fldB19
- Call setComboProperties(fldB19, "Yes;No;Unknown")
+ Call setComboProperties(fldB19, "Yes;No;Unknown;None")
 
  Dim fldB20 As DAO.Field
  Set fldB20 = tdf.CreateField("Homeless_not_in_shelter", dbText)
  tdf.Fields.Append fldB20
- Call setComboProperties(fldB20, "Yes;No;Unknown")
+ Call setComboProperties(fldB20, "Yes;No;Unknown;None")
 
  Dim fldB21 As DAO.Field
  Set fldB21 = tdf.CreateField("Supported_by_family", dbText)
  tdf.Fields.Append fldB21
- Call setComboProperties(fldB21, "Yes;No;Unknown")
+ Call setComboProperties(fldB21, "Yes;No;Unknown;None")
 
  Dim fldB22 As DAO.Field
  Set fldB22 = tdf.CreateField("Jail_Hospital", dbText)
  tdf.Fields.Append fldB22
- Call setComboProperties(fldB22, "Yes;No;Unknown")
+ Call setComboProperties(fldB22, "Yes;No;Unknown;None")
 
  Dim fldB23 As DAO.Field
  Set fldB23 = tdf.CreateField("Arrested", dbText)
  tdf.Fields.Append fldB23
- Call setComboProperties(fldB23, "Yes;No;Unknown")
+ Call setComboProperties(fldB23, "Yes;No;Unknown;None")
 
  Dim fldB24 As DAO.Field
  Set fldB24 = tdf.CreateField("Self-help", dbText)
  tdf.Fields.Append fldB24
- Call setComboProperties(fldB24, "Yes;No;Unknown")
+ Call setComboProperties(fldB24, "Yes;No;Unknown;None")
 
  Dim fldB25 As DAO.Field
  Set fldB25 = tdf.CreateField("self-help-num", dbInteger)
@@ -154,7 +157,7 @@ Public Sub daoCreateTables()
  Dim fldB27 As DAO.Field
  Set fldB27 = tdf.CreateField("Registered_voter", dbText)
  tdf.Fields.Append fldB27
- Call setComboProperties(fldB27, "Yes;No:N/A")
+ Call setComboProperties(fldB27, "Yes;No;N/A")
  
  'phq fields
  Dim fldC01 As DAO.Field
@@ -222,22 +225,27 @@ Public Sub daoCreateTables()
  Dim fldE01 As DAO.Field
  Set fldE01 = tdf.CreateField("A_1_1", dbInteger)
  tdf.Fields.Append fldE01
+ Call intOneToSevenRange(fldE01)
 
  Dim fldE02 As DAO.Field
  Set fldE02 = tdf.CreateField("A_2_2", dbInteger)
  tdf.Fields.Append fldE02
+ Call intOneToSevenRange(fldE02)
 
  Dim fldE03 As DAO.Field
  Set fldE03 = tdf.CreateField("A_3_3", dbInteger)
  tdf.Fields.Append fldE03
+ Call intOneToSevenRange(fldE03)
 
  Dim fldE04 As DAO.Field
  Set fldE04 = tdf.CreateField("A_4_4", dbInteger)
  tdf.Fields.Append fldE04
+ Call intOneToSevenRange(fldE04)
 
  Dim fldE05 As DAO.Field
  Set fldE05 = tdf.CreateField("A_5_5", dbInteger)
  tdf.Fields.Append fldE05
+ Call intOneToSevenRange(fldE05)
 
  Dim fldE06 As DAO.Field
  Set fldE06 = tdf.CreateField("A_imp", dbText)
@@ -247,22 +255,27 @@ Public Sub daoCreateTables()
  Dim fldE07 As DAO.Field
  Set fldE07 = tdf.CreateField("D_1_6", dbInteger)
  tdf.Fields.Append fldE07
+ Call intOneToSevenRange(fldE07)
 
  Dim fldE08 As DAO.Field
  Set fldE08 = tdf.CreateField("D_2_7", dbInteger)
  tdf.Fields.Append fldE08
+ Call intOneToSevenRange(fldE08)
 
  Dim fldE09 As DAO.Field
  Set fldE09 = tdf.CreateField("D_3_8", dbInteger)
  tdf.Fields.Append fldE09
+ Call intOneToSevenRange(fldE09)
 
  Dim fldE10 As DAO.Field
  Set fldE10 = tdf.CreateField("D_4_9", dbInteger)
  tdf.Fields.Append fldE10
+ Call intOneToSevenRange(fldE10)
 
  Dim fldE11 As DAO.Field
  Set fldE11 = tdf.CreateField("D_5_10", dbInteger)
  tdf.Fields.Append fldE11
+ Call intOneToSevenRange(fldE11)
 
  Dim fldE12 As DAO.Field
  Set fldE12 = tdf.CreateField("D_imp", dbText)
@@ -272,22 +285,27 @@ Public Sub daoCreateTables()
  Dim fldE13 As DAO.Field
  Set fldE13 = tdf.CreateField("S_1_11", dbInteger)
  tdf.Fields.Append fldE13
+ Call intOneToSevenRange(fldE13)
 
  Dim fldE14 As DAO.Field
  Set fldE14 = tdf.CreateField("S_2_12", dbInteger)
  tdf.Fields.Append fldE14
+ Call intOneToSevenRange(fldE14)
 
  Dim fldE15 As DAO.Field
  Set fldE15 = tdf.CreateField("S_3_13", dbInteger)
  tdf.Fields.Append fldE15
+ Call intOneToSevenRange(fldE15)
 
  Dim fldE16 As DAO.Field
  Set fldE16 = tdf.CreateField("S_4_14", dbInteger)
  tdf.Fields.Append fldE16
+ Call intOneToSevenRange(fldE16)
 
  Dim fldE17 As DAO.Field
  Set fldE17 = tdf.CreateField("S_5_15", dbInteger)
  tdf.Fields.Append fldE17
+ Call intOneToSevenRange(fldE17)
 
  Dim fldE18 As DAO.Field
  Set fldE18 = tdf.CreateField("S_imp", dbText)
@@ -297,22 +315,27 @@ Public Sub daoCreateTables()
  Dim fldE19 As DAO.Field
  Set fldE19 = tdf.CreateField("G_1_16", dbInteger)
  tdf.Fields.Append fldE19
+ Call intOneToSevenRange(fldE19)
 
  Dim fldE20 As DAO.Field
  Set fldE20 = tdf.CreateField("G_2_17", dbInteger)
  tdf.Fields.Append fldE20
+ Call intOneToSevenRange(fldE20)
 
  Dim fldE21 As DAO.Field
  Set fldE21 = tdf.CreateField("G_3_18", dbInteger)
  tdf.Fields.Append fldE21
+ Call intOneToSevenRange(fldE21)
 
  Dim fldE22 As DAO.Field
  Set fldE22 = tdf.CreateField("G_4_19", dbInteger)
  tdf.Fields.Append fldE22
+ Call intOneToSevenRange(fldE22)
 
  Dim fldE23 As DAO.Field
  Set fldE23 = tdf.CreateField("G_5_20", dbInteger)
  tdf.Fields.Append fldE23
+ Call intOneToSevenRange(fldE23)
 
  Dim fldE24 As DAO.Field
  Set fldE24 = tdf.CreateField("G_imp", dbText)
@@ -322,47 +345,57 @@ Public Sub daoCreateTables()
  Dim fldE25 As DAO.Field
  Set fldE25 = tdf.CreateField("B_1_21", dbInteger)
  tdf.Fields.Append fldE25
+ Call intOneToSevenRange(fldE25)
 
  Dim fldE26 As DAO.Field
  Set fldE26 = tdf.CreateField("B_2_22", dbInteger)
  tdf.Fields.Append fldE26
+ Call intOneToSevenRange(fldE26)
 
  Dim fldE27 As DAO.Field
  Set fldE27 = tdf.CreateField("B_3_23", dbInteger)
  tdf.Fields.Append fldE27
+ Call intOneToSevenRange(fldE27)
 
  Dim fldE28 As DAO.Field
  Set fldE28 = tdf.CreateField("B_4_24", dbInteger)
  tdf.Fields.Append fldE28
+ Call intOneToSevenRange(fldE28)
 
  Dim fldE29 As DAO.Field
  Set fldE29 = tdf.CreateField("B_5_25", dbInteger)
  tdf.Fields.Append fldE29
+ Call intOneToSevenRange(fldE29)
 
  Dim fldE30 As DAO.Field
- Set fldE30 = tdf.CreateField("G_imp", dbText)
+ Set fldE30 = tdf.CreateField("B_imp", dbText)
  tdf.Fields.Append fldE30
  Call setComboProperties(fldE30, "Not difficult at all;Somewhat difficult;Very difficult;Extremely difficult")
 
  Dim fldE31 As DAO.Field
  Set fldE31 = tdf.CreateField("P_1_26", dbInteger)
  tdf.Fields.Append fldE31
+ Call intOneToSevenRange(fldE31)
 
  Dim fldE32 As DAO.Field
  Set fldE32 = tdf.CreateField("P_2_27", dbInteger)
  tdf.Fields.Append fldE32
+ Call intOneToSevenRange(fldE32)
 
  Dim fldE33 As DAO.Field
  Set fldE33 = tdf.CreateField("P_3_28", dbInteger)
  tdf.Fields.Append fldE33
+ Call intOneToSevenRange(fldE33)
 
  Dim fldE34 As DAO.Field
  Set fldE34 = tdf.CreateField("P_4_29", dbInteger)
  tdf.Fields.Append fldE34
+ Call intOneToSevenRange(fldE34)
 
  Dim fldE35 As DAO.Field
  Set fldE35 = tdf.CreateField("P_5_30", dbInteger)
  tdf.Fields.Append fldE35
+ Call intOneToSevenRange(fldE35)
 
  Dim fldE36 As DAO.Field
  Set fldE36 = tdf.CreateField("P_imp", dbText)
@@ -372,22 +405,27 @@ Public Sub daoCreateTables()
  Dim fldE37 As DAO.Field
  Set fldE37 = tdf.CreateField("V_1_31", dbInteger)
  tdf.Fields.Append fldE37
+ Call intOneToSevenRange(fldE37)
 
  Dim fldE38 As DAO.Field
  Set fldE38 = tdf.CreateField("V_2_32", dbInteger)
  tdf.Fields.Append fldE38
+ Call intOneToSevenRange(fldE38)
 
  Dim fldE39 As DAO.Field
  Set fldE39 = tdf.CreateField("V_3_33", dbInteger)
  tdf.Fields.Append fldE39
+ Call intOneToSevenRange(fldE39)
 
  Dim fldE40 As DAO.Field
  Set fldE40 = tdf.CreateField("V_4_34", dbInteger)
  tdf.Fields.Append fldE40
+ Call intOneToSevenRange(fldE40)
 
  Dim fldE41 As DAO.Field
  Set fldE41 = tdf.CreateField("V_5_35", dbInteger)
  tdf.Fields.Append fldE41
+ Call intOneToSevenRange(fldE41)
 
  Dim fldE42 As DAO.Field
  Set fldE42 = tdf.CreateField("V_imp", dbText)
@@ -439,115 +477,137 @@ Public Sub daoCreateTables()
 
  'mental health screen fields
  Dim fldG01 As DAO.Field
- Set fldG01 = tdf.CreateField("MH_1", dbBoolean)
+ Set fldG01 = tdf.CreateField("MH_1", dbInteger)
  tdf.Fields.Append fldG01
- Call SetPropertyDAO(fldG01, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG01, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG01)
 
  Dim fldG02 As DAO.Field
- Set fldG02 = tdf.CreateField("MH_2", dbBoolean)
+ Set fldG02 = tdf.CreateField("MH_2", dbInteger)
  tdf.Fields.Append fldG02
- Call SetPropertyDAO(fldG02, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG02, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG02)
 
  Dim fldG03 As DAO.Field
- Set fldG03 = tdf.CreateField("MH_3", dbBoolean)
+ Set fldG03 = tdf.CreateField("MH_3", dbInteger)
  tdf.Fields.Append fldG03
- Call SetPropertyDAO(fldG03, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG03, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG03)
 
  Dim fldG04 As DAO.Field
- Set fldG04 = tdf.CreateField("MH_4", dbBoolean)
+ Set fldG04 = tdf.CreateField("MH_4", dbInteger)
  tdf.Fields.Append fldG04
- Call SetPropertyDAO(fldG04, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG04, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG04)
 
  Dim fldG05 As DAO.Field
- Set fldG05 = tdf.CreateField("MH_5", dbBoolean)
+ Set fldG05 = tdf.CreateField("MH_5", dbInteger)
  tdf.Fields.Append fldG05
- Call SetPropertyDAO(fldG05, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG05, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG05)
 
  Dim fldG06 As DAO.Field
- Set fldG06 = tdf.CreateField("MH_6a", dbBoolean)
+ Set fldG06 = tdf.CreateField("MH_6a", dbInteger)
  tdf.Fields.Append fldG06
- Call SetPropertyDAO(fldG06, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG06, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG06)
 
  Dim fldG07 As DAO.Field
- Set fldG07 = tdf.CreateField("MH_6b", dbBoolean)
+ Set fldG07 = tdf.CreateField("MH_6b", dbInteger)
  tdf.Fields.Append fldG07
- Call SetPropertyDAO(fldG07, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG07, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG07)
 
  Dim fldG08 As DAO.Field
- Set fldG08 = tdf.CreateField("MH_7", dbBoolean)
+ Set fldG08 = tdf.CreateField("MH_7", dbInteger)
  tdf.Fields.Append fldG08
- Call SetPropertyDAO(fldG08, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG08, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG08)
 
  Dim fldG09 As DAO.Field
- Set fldG09 = tdf.CreateField("MH_8", dbBoolean)
+ Set fldG09 = tdf.CreateField("MH_8", dbInteger)
  tdf.Fields.Append fldG09
- Call SetPropertyDAO(fldG09, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG09, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG09)
 
  Dim fldG10 As DAO.Field
- Set fldG10 = tdf.CreateField("MH_9", dbBoolean)
+ Set fldG10 = tdf.CreateField("MH_9", dbInteger)
  tdf.Fields.Append fldG10
- Call SetPropertyDAO(fldG10, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG10, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldG10)
 
  Dim fldG11 As DAO.Field
- Set fldG11 = tdf.CreateField("MH_10", dbBoolean)
+ Set fldG11 = tdf.CreateField("MH_10", dbInteger)
  tdf.Fields.Append fldG11
- Call SetPropertyDAO(fldG11, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG11, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG11)
 
  Dim fldG12 As DAO.Field
- Set fldG12 = tdf.CreateField("MH_11", dbBoolean)
+ Set fldG12 = tdf.CreateField("MH_11", dbInteger)
  tdf.Fields.Append fldG12
- Call SetPropertyDAO(fldG12, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG12, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG12)
 
  Dim fldG13 As DAO.Field
- Set fldG13 = tdf.CreateField("MH_12", dbBoolean)
+ Set fldG13 = tdf.CreateField("MH_12", dbInteger)
  tdf.Fields.Append fldG13
- Call SetPropertyDAO(fldG13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG13)
 
  Dim fldG14 As DAO.Field
- Set fldG14 = tdf.CreateField("MH_13", dbBoolean)
+ Set fldG14 = tdf.CreateField("MH_13", dbInteger)
  tdf.Fields.Append fldG14
- Call SetPropertyDAO(fldG14, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG14, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG14)
 
  Dim fldG15 As DAO.Field
- Set fldG15 = tdf.CreateField("MH_14", dbBoolean)
+ Set fldG15 = tdf.CreateField("MH_14", dbInteger)
  tdf.Fields.Append fldG15
- Call SetPropertyDAO(fldG15, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG15, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG15)
 
  Dim fldG16 As DAO.Field
- Set fldG16 = tdf.CreateField("MH_15", dbBoolean)
+ Set fldG16 = tdf.CreateField("MH_15", dbInteger)
  tdf.Fields.Append fldG16
- Call SetPropertyDAO(fldG16, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG16, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG16)
 
  Dim fldG17 As DAO.Field
- Set fldG17 = tdf.CreateField("MH_16", dbBoolean)
+ Set fldG17 = tdf.CreateField("MH_16", dbInteger)
  tdf.Fields.Append fldG17
- Call SetPropertyDAO(fldG17, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG17, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG17)
 
  Dim fldG18 As DAO.Field
- Set fldG18 = tdf.CreateField("MH_17", dbBoolean)
+ Set fldG18 = tdf.CreateField("MH_17", dbInteger)
  tdf.Fields.Append fldG18
- Call SetPropertyDAO(fldG18, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldG18, "DisplayControl", dbInteger, CInt(acCheckBox))
+ CaLL yesNoNoneQuestions(fldG18)
  
  'SUD screen fields
  Dim fldH01 As DAO.Field
- Set fldH01 = tdf.CreateField("SUD_1", dbBoolean)
+ Set fldH01 = tdf.CreateField("SUD_1", dbInteger)
  tdf.Fields.Append fldH01
- Call SetPropertyDAO(fldH01, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH01, "DisplayControl", dbInteger, CInt(acCheckBox))
+Call yesNoNoneQuestions(fldH01)
 
  Dim fldH02 As DAO.Field
- Set fldH02 = tdf.CreateField("SUD_2", dbBoolean)
+ Set fldH02 = tdf.CreateField("SUD_2", dbInteger)
  tdf.Fields.Append fldH02
- Call SetPropertyDAO(fldH02, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH02, "DisplayControl", dbInteger, CInt(acCheckBox))
+Call yesNoNoneQuestions(fldH02)
 
  Dim fldH03 As DAO.Field
- Set fldH03 = tdf.CreateField("SUD_3", dbBoolean)
+ Set fldH03 = tdf.CreateField("SUD_3", dbInteger)
  tdf.Fields.Append fldH03
- Call SetPropertyDAO(fldH03, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH03, "DisplayControl", dbInteger, CInt(acCheckBox))
+Call yesNoNoneQuestions(fldH03)
 
  Dim fldH04 As DAO.Field
- Set fldH04 = tdf.CreateField("SUD_4", dbBoolean)
+ Set fldH04 = tdf.CreateField("SUD_4", dbInteger)
  tdf.Fields.Append fldH04
- Call SetPropertyDAO(fldH04, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH04, "DisplayControl", dbInteger, CInt(acCheckBox))
+Call yesNoNoneQuestions(fldH04)
 
  Dim fldH05 As DAO.Field
  Set fldH05 = tdf.CreateField("SUD_5a", dbBoolean)
@@ -590,64 +650,76 @@ Public Sub daoCreateTables()
  Call SetPropertyDAO(fldH12, "DisplayControl", dbInteger, CInt(acCheckBox))
 
  Dim fldH13 As DAO.Field
- Set fldH13 = tdf.CreateField("SUD_5", dbBoolean)
+ Set fldH13 = tdf.CreateField("SUD_5", dbInteger)
  tdf.Fields.Append fldH13
- Call SetPropertyDAO(fldH13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH13)
 
  Dim fldH14 As DAO.Field
- Set fldH14 = tdf.CreateField("SUD_6", dbBoolean)
+ Set fldH14 = tdf.CreateField("SUD_6", dbInteger)
  tdf.Fields.Append fldH14
- Call SetPropertyDAO(fldH14, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH14, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH14)
 
  Dim fldH15 As DAO.Field
- Set fldH15 = tdf.CreateField("SUD_7", dbBoolean)
+ Set fldH15 = tdf.CreateField("SUD_7", dbInteger)
  tdf.Fields.Append fldH15
- Call SetPropertyDAO(fldH15, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH15, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH15)
 
  Dim fldH16 As DAO.Field
- Set fldH16 = tdf.CreateField("SUD_8", dbBoolean)
+ Set fldH16 = tdf.CreateField("SUD_8", dbInteger)
  tdf.Fields.Append fldH16
- Call SetPropertyDAO(fldH16, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH16, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH16)
 
  Dim fldH17 As DAO.Field
- Set fldH17 = tdf.CreateField("SUD_9", dbBoolean)
+ Set fldH17 = tdf.CreateField("SUD_9", dbInteger)
  tdf.Fields.Append fldH17
- Call SetPropertyDAO(fldH17, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH17, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH17)
 
  Dim fldH18 As DAO.Field
- Set fldH18 = tdf.CreateField("SUD_10", dbBoolean)
+ Set fldH18 = tdf.CreateField("SUD_10", dbInteger)
  tdf.Fields.Append fldH18
- Call SetPropertyDAO(fldH18, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH18, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH18)
 
  Dim fldH19 As DAO.Field
- Set fldH19 = tdf.CreateField("SUD_11", dbBoolean)
+ Set fldH19 = tdf.CreateField("SUD_11", dbInteger)
  tdf.Fields.Append fldH19
- Call SetPropertyDAO(fldH19, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH19, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH19)
 
  Dim fldH20 As DAO.Field
- Set fldH20 = tdf.CreateField("SUD_12", dbBoolean)
+ Set fldH20 = tdf.CreateField("SUD_12", dbInteger)
  tdf.Fields.Append fldH20
- Call SetPropertyDAO(fldH20, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH20, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH20)
 
  Dim fldH21 As DAO.Field
- Set fldH21 = tdf.CreateField("SUD_13", dbBoolean)
+ Set fldH21 = tdf.CreateField("SUD_13", dbInteger)
  tdf.Fields.Append fldH21
- Call SetPropertyDAO(fldH21, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH21, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH21)
 
  Dim fldH22 As DAO.Field
- Set fldH22 = tdf.CreateField("SUD_14", dbBoolean)
+ Set fldH22 = tdf.CreateField("SUD_14", dbInteger)
  tdf.Fields.Append fldH22
- Call SetPropertyDAO(fldH22, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH22, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH22)
 
  Dim fldH23 As DAO.Field
- Set fldH23 = tdf.CreateField("SUD_15", dbBoolean)
+ Set fldH23 = tdf.CreateField("SUD_15", dbInteger)
  tdf.Fields.Append fldH23
- Call SetPropertyDAO(fldH23, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH23, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH23)
 
  Dim fldH24 As DAO.Field
- Set fldH24 = tdf.CreateField("SUD_16", dbBoolean)
+ Set fldH24 = tdf.CreateField("SUD_16", dbInteger)
  tdf.Fields.Append fldH24
- Call SetPropertyDAO(fldH24, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH24, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH24)
 
  Dim fldH25 As DAO.Field
  Set fldH25 = tdf.CreateField("Prim_Sub", dbText)
@@ -678,13 +750,17 @@ Public Sub daoCreateTables()
  tdf.Fields.Append fldH30
 
  Dim fldH31 As DAO.Field
- Set fldH31 = tdf.CreateField("Prim_last_use", dbDate)
+ Set fldH31 = tdf.CreateField("Prim_last_use_month", dbInteger)
  tdf.Fields.Append fldH31
+
+ Dim fldH31a As DAO.Field
+ Set fldH31a = tdf.CreateField("Prim_last_use_year", dbInteger)
+ tdf.Fields.Append fldH31a
 
  Dim fldH32 As DAO.Field
  Set fldH32 = tdf.CreateField("Sec_Sub", dbText)
  tdf.Fields.Append fldH32
- Call setComboProperties(fldH32, "Not collected;None;Alcohol;Amphetamines;Barbiturates;Benzodiazepines;Cocaine/crack;Hallucinogens;Heroin;Inhalants;Marijuana;Methamphetamines;Non-prescriptive methadone;Other amphetamines;Other hallucinogens;Others sedatives;Other tranquilizers;Other opiates;Other stimulants;OTC drugs;PCP;Other")
+ Call setComboProperties(fldH32, "N/A;Not collected;None;Alcohol;Amphetamines;Barbiturates;Benzodiazepines;Cocaine/crack;Hallucinogens;Heroin;Inhalants;Marijuana;Methamphetamines;Non-prescriptive methadone;Other amphetamines;Other hallucinogens;Others sedatives;Other tranquilizers;Other opiates;Other stimulants;OTC drugs;PCP;Other")
 
  Dim fldH33 As DAO.Field
  Set fldH33 = tdf.CreateField("Sec_age_first", dbInteger)
@@ -710,8 +786,12 @@ Public Sub daoCreateTables()
  tdf.Fields.Append fldH37
 
  Dim fldH38 As DAO.Field
- Set fldH38 = tdf.CreateField("Sec_last_use", dbDate)
+ Set fldH38 = tdf.CreateField("Sec_last_use_month", dbInteger)
  tdf.Fields.Append fldH38
+
+ Dim fldH38a As DAO.Field
+ Set fldH38a = tdf.CreateField("Sec_last_use_year", dbDdbIntegerate)
+ tdf.Fields.Append fldH38a
 
  Dim fldH39 As DAO.Field
  Set fldH39 = tdf.CreateField("Other_Addictions_Food", dbBoolean)
@@ -742,74 +822,88 @@ Public Sub daoCreateTables()
  tdf.Fields.Append fldH44
 
  Dim fldH45 As DAO.Field
- Set fldH45 = tdf.CreateField("Needle_track_marks", dbBoolean)
+ Set fldH45 = tdf.CreateField("Needle_track_marks", dbInteger)
  tdf.Fields.Append fldH45
- Call SetPropertyDAO(fldH45, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH45, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH45)
 
  Dim fldH46 As DAO.Field
- Set fldH46 = tdf.CreateField("Skin_abscesses_etc", dbBoolean)
+ Set fldH46 = tdf.CreateField("Skin_abscesses_etc", dbInteger)
  tdf.Fields.Append fldH46
- Call SetPropertyDAO(fldH46, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH46, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH46)
 
  Dim fldH47 As DAO.Field
- Set fldH47 = tdf.CreateField("Tremors", dbBoolean)
+ Set fldH47 = tdf.CreateField("Tremors", dbInteger)
  tdf.Fields.Append fldH47
- Call SetPropertyDAO(fldH47, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH47, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH47)
 
  Dim fldH48 As DAO.Field
- Set fldH48 = tdf.CreateField("Unclear_speech", dbBoolean)
+ Set fldH48 = tdf.CreateField("Unclear_speech", dbInteger)
  tdf.Fields.Append fldH48
- Call SetPropertyDAO(fldH48, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH48, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH48)
 
  Dim fldH49 As DAO.Field
- Set fldH49 = tdf.CreateField("Unsteady_gait", dbBoolean)
+ Set fldH49 = tdf.CreateField("Unsteady_gait", dbInteger)
  tdf.Fields.Append fldH49
- Call SetPropertyDAO(fldH49, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH49, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH49)
 
  Dim fldH50 As DAO.Field
- Set fldH50 = tdf.CreateField("Dialated_Pupils", dbBoolean)
+ Set fldH50 = tdf.CreateField("Dialated_Pupils", dbInteger)
  tdf.Fields.Append fldH50
- Call SetPropertyDAO(fldH50, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH50, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH50)
 
  Dim fldH51 As DAO.Field
- Set fldH51 = tdf.CreateField("Scratching", dbBoolean)
+ Set fldH51 = tdf.CreateField("Scratching", dbInteger)
  tdf.Fields.Append fldH51
- Call SetPropertyDAO(fldH51, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH51, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH51)
 
  Dim fldH52 As DAO.Field
- Set fldH52 = tdf.CreateField("Swollen_hands_or_feet", dbBoolean)
+ Set fldH52 = tdf.CreateField("Swollen_hands_or_feet", dbInteger)
  tdf.Fields.Append fldH52
- Call SetPropertyDAO(fldH52, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH52, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH52)
 
  Dim fldH53 As DAO.Field
- Set fldH53 = tdf.CreateField("Smell_of_alcohol_or_marijuana", dbBoolean)
+ Set fldH53 = tdf.CreateField("Smell_of_alcohol_or_marijuana", dbInteger)
  tdf.Fields.Append fldH53
- Call SetPropertyDAO(fldH53, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH53, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH53)
 
  Dim fldH54 As DAO.Field
- Set fldH54 = tdf.CreateField("Drug_paraphernalia", dbBoolean)
+ Set fldH54 = tdf.CreateField("Drug_paraphernalia", dbInteger)
  tdf.Fields.Append fldH54
- Call SetPropertyDAO(fldH54, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH54, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH54)
 
  Dim fldH55 As DAO.Field
- Set fldH55 = tdf.CreateField("Nodding_out", dbBoolean)
+ Set fldH55 = tdf.CreateField("Nodding_out", dbInteger)
  tdf.Fields.Append fldH55
- Call SetPropertyDAO(fldH55, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH55, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH55)
 
  Dim fldH56 As DAO.Field
- Set fldH56 = tdf.CreateField("Agitation", dbBoolean)
+ Set fldH56 = tdf.CreateField("Agitation", dbInteger)
  tdf.Fields.Append fldH56
- Call SetPropertyDAO(fldH56, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH56, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH56)
 
  Dim fldH57 As DAO.Field
- Set fldH57 = tdf.CreateField("Inability_to_focus", dbBoolean)
+ Set fldH57 = tdf.CreateField("Inability_to_focus", dbInteger)
  tdf.Fields.Append fldH57
- Call SetPropertyDAO(fldH57, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH57, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH57)
 
  Dim fldH58 As DAO.Field
- Set fldH58 = tdf.CreateField("Burns_on_inside_of_lips", dbBoolean)
+ Set fldH58 = tdf.CreateField("Burns_on_inside_of_lips", dbInteger)
  tdf.Fields.Append fldH58
- Call SetPropertyDAO(fldH58, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldH58, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldH58)
 
  '---------------------------------------------------------------
  '---------------------------------------------------------------
@@ -857,7 +951,7 @@ Public Sub daoCreateTables()
  Dim fldI005 As DAO.Field
  Set fldI005 = tdf.CreateField("ICD-Mental_health", dbText)
  tdf.Fields.Append fldI005
- Call setComboMultiProperties(fldI005, 0)
+ '  Call setComboMultiProperties(fldI005, 0)
 
  Dim fldI006 As DAO.Field
  Set fldI006 = tdf.CreateField("Chief_complaint", dbMemo)
@@ -1194,34 +1288,40 @@ Public Sub daoCreateTables()
  Call SetPropertyDAO(fldI072, "DisplayControl", dbInteger, CInt(acCheckBox))
 
  Dim fldI073 As DAO.Field
- Set fldI073 = tdf.CreateField("traum_sxs1", dbBoolean)
+ Set fldI073 = tdf.CreateField("traum_sxs1", dbInteger)
  tdf.Fields.Append fldI073
- Call SetPropertyDAO(fldI073, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldI073, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldI073)
 
  Dim fldI074 As DAO.Field
- Set fldI074 = tdf.CreateField("traum_sxs2", dbBoolean)
+ Set fldI074 = tdf.CreateField("traum_sxs2", dbInteger)
  tdf.Fields.Append fldI074
- Call SetPropertyDAO(fldI074, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldI074, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldI074)
 
  Dim fldI075 As DAO.Field
- Set fldI075 = tdf.CreateField("traum_sxs3", dbBoolean)
+ Set fldI075 = tdf.CreateField("traum_sxs3", dbInteger)
  tdf.Fields.Append fldI075
- Call SetPropertyDAO(fldI075, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldI075, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldI075)
 
  Dim fldI076 As DAO.Field
- Set fldI076 = tdf.CreateField("traum_sxs4", dbBoolean)
+ Set fldI076 = tdf.CreateField("traum_sxs4", dbInteger)
  tdf.Fields.Append fldI076
- Call SetPropertyDAO(fldI076, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldI076, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldI076)
 
  Dim fldI077 As DAO.Field
- Set fldI077 = tdf.CreateField("traum_sxs5", dbBoolean)
+ Set fldI077 = tdf.CreateField("traum_sxs5", dbInteger)
  tdf.Fields.Append fldI077
- Call SetPropertyDAO(fldI077, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldI077, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldI077)
 
  Dim fldI078 As DAO.Field
- Set fldI078 = tdf.CreateField("traum_sxs6", dbBoolean)
+ Set fldI078 = tdf.CreateField("traum_sxs6", dbInteger)
  tdf.Fields.Append fldI078
- Call SetPropertyDAO(fldI078, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldI078, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldI078)
 
  Dim fldI079 As DAO.Field
  Set fldI079 = tdf.CreateField("Medical_conditions", dbText)
@@ -1348,49 +1448,54 @@ Public Sub daoCreateTables()
  Call setComboMultiProperties(fldI104, "Euthymic;Depressed;Agitated;Euphoric;Irritable;Anxious")
 
  Dim fldI105 As DAO.Field
- Set fldI105 = tdf.CreateField("thought_cont", dbText)
+ Set fldI105 = tdf.CreateField("thought_pro", dbText)
  tdf.Fields.Append fldI105
  Call setComboMultiProperties(fldI105, "Goal-directed;Circumstantial;Tangential;LOA;FOI;Disorganized;Bizarre")
 
  Dim fldI106 As DAO.Field
- Set fldI106 = tdf.CreateField("percep", dbText)
+ Set fldI106 = tdf.CreateField("thought_cont", dbText)
  tdf.Fields.Append fldI106
  Call setComboMultiProperties(fldI106, "WNL;Paranoia;Phobias;Ideas of reference;Delusions;Obsessions")
 
  Dim fldI107 As DAO.Field
- Set fldI107 = tdf.CreateField("orient", dbText)
+ Set fldI107 = tdf.CreateField("perception", dbText)
  tdf.Fields.Append fldI107
  Call setComboMultiProperties(fldI107, "WNL;Auditory hallucinations;Visual hallucinations;Illusions")
 
  Dim fldI108 As DAO.Field
- Set fldI108 = tdf.CreateField("judg", dbText)
+ Set fldI108 = tdf.CreateField("orient", dbText)
  tdf.Fields.Append fldI108
  Call setComboMultiProperties(fldI108, "Person;Place;Date;Other situation;Not oriented")
 
  Dim fldI109 As DAO.Field
- Set fldI109 = tdf.CreateField("insight", dbText)
+ Set fldI109 = tdf.CreateField("judg", dbText)
  tdf.Fields.Append fldI109
  Call setComboMultiProperties(fldI109, "Intact;Impaired")
 
  Dim fldI110 As DAO.Field
- Set fldI110 = tdf.CreateField("fund_know", dbText)
+ Set fldI110 = tdf.CreateField("insight", dbText)
  tdf.Fields.Append fldI110
  Call setComboMultiProperties(fldI110, "Superior;Good;Fair;Poor")
 
  Dim fldI111 As DAO.Field
- Set fldI111 = tdf.CreateField("lang_mem", dbText)
+ Set fldI111 = tdf.CreateField("fund_know", dbText)
  tdf.Fields.Append fldI111
  Call setComboMultiProperties(fldI111, "Intact;Above average;Average;Below average;Mini mental")
 
  Dim fldI112 As DAO.Field
- Set fldI112 = tdf.CreateField("lett_for", dbText)
+ Set fldI112 = tdf.CreateField("lang_mem", dbText)
  tdf.Fields.Append fldI112
  Call setComboProperties(fldI112, "Can name three objects;repeat a phrase;repeats objects correctly;Repeats objects after 5 minutes")
 
  Dim fldI113 As DAO.Field
- Set fldI113 = tdf.CreateField("lett_back", dbText)
+ Set fldI113 = tdf.CreateField("lett_for", dbText)
  tdf.Fields.Append fldI113
  Call setComboProperties(fldI113, "correctly;with difficulty;unable")
+
+ Dim fldI113a As DAO.Field
+ Set fldI113a = tdf.CreateField("lett_back", dbText)
+ tdf.Fields.Append fldI113a
+ Call setComboProperties(fldI113a, "correctly;with difficulty;unable")
 
  Dim fldI114 As DAO.Field
  Set fldI114 = tdf.CreateField("num_for", dbText)
@@ -1436,29 +1541,40 @@ Public Sub daoCreateTables()
 
  'CAF II fields
  Dim fldJ01 As DAO.Field
- Set fldJ01 = tdf.CreateField("cult_con_life", dbBoolean)
+ Set fldJ01 = tdf.CreateField("cult_con_life", dbInteger)
  tdf.Fields.Append fldJ01
- Call SetPropertyDAO(fldJ01, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ01, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ01)
 
  Dim fldJ02 As DAO.Field
- Set fldJ02 = tdf.CreateField("cult_con_tx", dbBoolean)
+ Set fldJ02 = tdf.CreateField("cult_con_tx", dbInteger)
  tdf.Fields.Append fldJ02
- Call SetPropertyDAO(fldJ02, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ02, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ02)
 
  Dim fldJ03 As DAO.Field
- Set fldJ03 = tdf.CreateField("relig_child", dbBoolean)
+ Set fldJ03 = tdf.CreateField("relig_child", dbInteger)
  tdf.Fields.Append fldJ03
- Call SetPropertyDAO(fldJ03, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ03, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ03)
 
  Dim fldJ04 As DAO.Field
- Set fldJ04 = tdf.CreateField("spir_cur", dbBoolean)
+ Set fldJ04 = tdf.CreateField("spir_cur", dbInteger)
  tdf.Fields.Append fldJ04
- Call SetPropertyDAO(fldJ04, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ04, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ04)
 
  Dim fldJ05 As DAO.Field
- Set fldJ05 = tdf.CreateField("faith_mem_cur", dbBoolean)
+ Set fldJ05 = tdf.CreateField("faith_mem_cur", dbInteger)
  tdf.Fields.Append fldJ05
- Call SetPropertyDAO(fldJ05, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ05, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ05)
+
+ Dim fldJ05a As DAO.Field
+ Set fldJ05a = tdf.CreateField("med_or_pray", dbInteger)
+ tdf.Fields.Append fldJ05a
+ '  Call SetPropertyDAO(fldJ05, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ05a)
 
  Dim fldJ06 As DAO.Field
  Set fldJ06 = tdf.CreateField("edu_cur", dbText)
@@ -1466,19 +1582,22 @@ Public Sub daoCreateTables()
  Call setComboProperties(fldJ06, "None;in school;in a voc/tech/business")
 
  Dim fldJ07 As DAO.Field
- Set fldJ07 = tdf.CreateField("Spec_edu", dbBoolean)
+ Set fldJ07 = tdf.CreateField("Spec_edu", dbInteger)
  tdf.Fields.Append fldJ07
- Call SetPropertyDAO(fldJ07, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ07, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ07)
 
  Dim fldJ08 As DAO.Field
- Set fldJ08 = tdf.CreateField("more_edu", dbBoolean)
+ Set fldJ08 = tdf.CreateField("more_edu", dbText)
  tdf.Fields.Append fldJ08
- Call SetPropertyDAO(fldJ08, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ08, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call setComboProperties(fldJ06, "Yes;No;Not Sure")
 
  Dim fldJ09 As DAO.Field
- Set fldJ09 = tdf.CreateField("neur_test", dbBoolean)
+ Set fldJ09 = tdf.CreateField("neur_test", dbInteger)
  tdf.Fields.Append fldJ09
- Call SetPropertyDAO(fldJ09, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ09, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ09)
 
  Dim fldJ10 As DAO.Field
  Set fldJ10 = tdf.CreateField("gamb_screen1", dbText)
@@ -1486,29 +1605,34 @@ Public Sub daoCreateTables()
  Call setComboProperties(fldJ10, "Yes;Yes+Within the past year;No")
 
  Dim fldJ11 As DAO.Field
- Set fldJ11 = tdf.CreateField("gamb_screen2", dbBoolean)
+ Set fldJ11 = tdf.CreateField("gamb_screen2", dbInteger)
  tdf.Fields.Append fldJ11
- Call SetPropertyDAO(fldJ11, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ11, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ11)
 
  Dim fldJ12 As DAO.Field
- Set fldJ12 = tdf.CreateField("gamb_screen3", dbBoolean)
+ Set fldJ12 = tdf.CreateField("gamb_screen3", dbInteger)
  tdf.Fields.Append fldJ12
- Call SetPropertyDAO(fldJ12, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ12, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ12)
 
  Dim fldJ13 As DAO.Field
- Set fldJ13 = tdf.CreateField("gamb_screen4", dbBoolean)
+ Set fldJ13 = tdf.CreateField("gamb_screen4", dbInteger)
  tdf.Fields.Append fldJ13
- Call SetPropertyDAO(fldJ13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ13, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ13)
 
  Dim fldJ14 As DAO.Field
- Set fldJ14 = tdf.CreateField("gamb_screen5", dbBoolean)
+ Set fldJ14 = tdf.CreateField("gamb_screen5", dbInteger)
  tdf.Fields.Append fldJ14
- Call SetPropertyDAO(fldJ14, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ14, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ14)
 
  Dim fldJ15 As DAO.Field
- Set fldJ15 = tdf.CreateField("gamb_screen6", dbBoolean)
+ Set fldJ15 = tdf.CreateField("gamb_screen6", dbInteger)
  tdf.Fields.Append fldJ15
- Call SetPropertyDAO(fldJ15, "DisplayControl", dbInteger, CInt(acCheckBox))
+ '  Call SetPropertyDAO(fldJ15, "DisplayControl", dbInteger, CInt(acCheckBox))
+ Call yesNoNoneQuestions(fldJ15)
 
  Dim fldJ16 As DAO.Field
  Set fldJ16 = tdf.CreateField("Leg_hx_prob", dbBoolean)
@@ -1683,6 +1807,24 @@ Function setComboMultiProperties(obj As Object, strList As String)
   .Properties.Append .CreateProperty("LimitToList", dbBoolean, True)
   .Properties.Append .CreateProperty("AllowMultipleValues", dbBoolean, True)
  End With
+
+End Function
+
+Function yesNoNoneQuestions(obj As Object)
+ ' Purpose:   Set the properties of ...
+ ' Arguments: obj = the object whose property should be set.
+    
+ Call SetPropertyDAO(obj, "ValidationRule", dbText, "IN (0,1,99)")
+ Call SetPropertyDAO(obj, "ValidationText", dbText, "Accepts 0(=no), 1(=yes), or 99(=N/A)")
+
+End Function
+
+Function intOneToSevenRange(obj As Object)
+ ' Purpose:   Set the properties of ...
+ ' Arguments: obj = the object whose property should be set.
+    
+ Call SetPropertyDAO(obj, "ValidationRule", dbText, "IN (1,2,3,4,5,6,7)")
+ Call SetPropertyDAO(obj, "ValidationText", dbText, "Accepts integers 1 through 7")
 
 End Function
 
