@@ -108,7 +108,7 @@ Public Sub daoCreateTables()
  Dim fldB17 As DAO.Field
  Set fldB17 = tdf.CreateField("Employment", dbText)
  tdf.Fields.Append fldB17
- Call setComboProperties(fldB17, "Employed full-time;Employed part-time;Unemployed;Paid transitional;Paid non-comp;Not in labor force homemaker;Not in labor force incarcerated;Not in labor force retired;Not in labor force SSI;Not in labor force student;Not in labor force other;Volunteer;Unknown")
+ Call setComboProperties(fldB17, "Employed full-time;Employed part-time;Unemployed;Paid transitional;Paid non-comp;NILF homemaker;NILF incarcerated;NILF retired;NILF SSI;NILF student;NILF other;Volunteer;Unknown")
 
  Dim fldB18 As DAO.Field
  Set fldB18 = tdf.CreateField("Income", dbText)
