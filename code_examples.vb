@@ -70,6 +70,14 @@ Public Sub daoCreateTables()
  tdf.Fields.Append fldA06
  Call setComboMultiProperties(fldA06, "Option 4; Option 5; Option 6")
 
+ ' Integer field with restricted input
+ Dim fldA07 As DAO.Field
+ Set fldA07 = tdf.CreateField("field_7", dbInteger)
+ tdf.Fields.Append fldA07
+ Call yesNoNoneQuestions(fldA07)
+'  Call SetPropertyDAO(fldA07, "ValidationRule", dbText, "IN (0,1,99)")
+'  Call SetPropertyDAO(fldA07, "ValidationText", dbText, "Accepts 0(=no), 1(=yes), or 99(=N/A)")
+
  ' ...
 
  ' Create the table 2 definition
@@ -124,6 +132,24 @@ Function setComboMultiProperties(obj As Object, strList As String)
   .Properties.Append .CreateProperty("LimitToList", dbBoolean, True)
   .Properties.Append .CreateProperty("AllowMultipleValues", dbBoolean, True)
  End With
+
+End Function
+
+Function yesNoNoneQuestions(obj As Object)
+ ' Purpose:   Set the properties of ...
+ ' Arguments: obj = the object whose property should be set.
+    
+ Call SetPropertyDAO(obj, "ValidationRule", dbText, "IN (0,1,99)")
+ Call SetPropertyDAO(obj, "ValidationText", dbText, "Accepts 0(=no), 1(=yes), or 99(=N/A)")
+
+End Function
+
+Function intOneToSevenRange(obj As Object)
+ ' Purpose:   Set the properties of ...
+ ' Arguments: obj = the object whose property should be set.
+    
+ Call SetPropertyDAO(obj, "ValidationRule", dbText, "IN (1,2,3,4,5,6,7)")
+ Call SetPropertyDAO(obj, "ValidationText", dbText, "Accepts integers 1 through 7")
 
 End Function
 
